@@ -1,0 +1,37 @@
+---
+title: "ggplot sample"
+author: "Yuhei Kuratomi"
+date: '2022-03-15'
+output:
+  html_document:
+    theme: paper
+---
+
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(dev = "ragg_png")
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+
+library(tidyverse)
+
+theme_set(theme_gray())
+```
+
+```{r}
+data <- mpg
+```
+
+### Face Wrap
+
+How to change chart label font sizes.
+
+```{r}
+data %>% 
+  ggplot(aes(x = cty, y = hwy)) +
+  geom_point() +
+  facet_wrap(~ class) +
+  theme(strip.text.x = element_text(size = 10))
+```
+
+
